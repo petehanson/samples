@@ -16,27 +16,22 @@ class Game {
 
         for ($frameIndex =0; $frameIndex < count($this->rolls); $frameIndex++) {
 
-            // make a frame
 
-            $frame = array();
-            $frame[] = $this->rolls[$frameIndex];
-            $frameIndex++;
-            $frame[] = $this->rolls[$frameIndex];
-
-
-            if ($this->isSpare($frame)) {
-               $total = $total + $this->rolls[$frameIndex + 1];
+            if ($this->isSpare($frameIndex)) {
+               $total = $total + 10 + $this->rolls[$frameIndex + 2];
+                $frameIndex++;
+            } else {
+                $total = $total + $this->rolls[$frameIndex] + $this->rolls[$frameIndex + 1];
+                $frameIndex++;
             }
-
-            $total = $total + $frame[0] + $frame[1];
 
         }
 
         return $total;
     }
 
-    protected function isSpare($frame) {
-        if ($frame[0] + $frame[1] == 10) {
+    protected function isSpare($frameIndex) {
+        if ($this->rolls[$frameIndex] + $this->rolls[$frameIndex + 1] == 10) {
             return true;
         } else {
             return false;

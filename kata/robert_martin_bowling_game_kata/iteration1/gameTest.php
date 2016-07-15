@@ -41,4 +41,26 @@ class GameTest extends \PHPUnit_Framework_TestCase {
 
         $this->assertEquals(16,$this->game->score());
     }
+
+    public function testTwoSpares() {
+        $this->game->roll(5);
+        $this->game->roll(3);
+        $this->game->roll(6);
+        $this->game->roll(4);
+        $this->game->roll(5);
+        $this->game->roll(5);
+        $this->game->roll(9);
+        $this->rollMany(0,13);
+
+        $this->assertEquals(51,$this->game->score());
+    }
+
+    public function testOneStrike() {
+        $this->game->roll(10);
+        $this->game->roll(3);
+        $this->game->roll(4);
+        $this->rollMany(0,16);
+
+        $this->assertEquals(24,$this->game->score());
+    }
 }
