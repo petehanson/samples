@@ -63,4 +63,9 @@ class GameTest extends \PHPUnit_Framework_TestCase {
 
         $this->assertEquals(24,$this->game->score());
     }
+
+    public function testPerfectGame() {
+        $this->rollMany(10,12);
+        $this->assertEquals(300,$this->game->score());
+    }
 }

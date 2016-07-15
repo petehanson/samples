@@ -14,18 +14,21 @@ class Game {
 
         $total = 0;
 
-        for ($frameIndex =0; $frameIndex < count($this->rolls); $frameIndex++) {
+        $frameIndex = 0;
+
+        for ($frame = 1; $frame <= 10; $frame++) {
 
             if ($this->isStrike($frameIndex)) {
 
                 $total = $total + 10 + $this->strikeBonus($frameIndex);
+                $frameIndex++;
 
             } else if ($this->isSpare($frameIndex)) {
                $total = $total + 10 + $this->spareBonus($frameIndex);
-                $frameIndex++;
+                $frameIndex += 2;
             } else {
                 $total = $total + $this->sumOfBallsInFrame($frameIndex);
-                $frameIndex++;
+                $frameIndex += 2;
             }
 
         }
