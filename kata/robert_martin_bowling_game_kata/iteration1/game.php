@@ -14,18 +14,18 @@ class Game {
 
         $total = 0;
 
-        for ($i =0; $i < count($this->rolls); $i++) {
+        for ($frameIndex =0; $frameIndex < count($this->rolls); $frameIndex++) {
 
             // make a frame
 
             $frame = array();
-            $frame[] = $this->rolls[$i];
-            $i++;
-            $frame[] = $this->rolls[$i];
+            $frame[] = $this->rolls[$frameIndex];
+            $frameIndex++;
+            $frame[] = $this->rolls[$frameIndex];
 
 
             if ($this->isSpare($frame)) {
-               $total = $total + $this->rolls[$i + 1];
+               $total = $total + $this->rolls[$frameIndex + 1];
             }
 
             $total = $total + $frame[0] + $frame[1];
