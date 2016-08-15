@@ -6,8 +6,6 @@ use uarsoftware\deploy\enum\logLevel as LogLevel;
 
 class FolderSSH extends abstractFolder
 {
-    private $_sshPrompt = 'lucas.campanella@ip-10-116-150-205:~$';
-
     public function isFolder($folder) {
         $this->_command->setCommand('if test -d "'.$folder.'"; then echo 1; fi');
         $ret = $this->_command->run();
@@ -29,10 +27,7 @@ class FolderSSH extends abstractFolder
     public function updateFolderPermission($path, $permission) {
         $oct = decoct($permission);
 
-        $this->_executor->read($this->_sshPrompt);
         $this->_executor->write("chmod ".$oct." ".$path." \n");
-        $this->_executor->read($this->_sshPrompt);
-
         $this->_log->log(LogLevel::info, "Permissions set to {$oct} for: {$path}\n");
     }
 
