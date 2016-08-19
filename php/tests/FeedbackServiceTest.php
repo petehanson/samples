@@ -21,7 +21,6 @@ class FeedbackServiceTest extends TestCase {
         TestDataFeedbackCodes,
         TestDataFeedback;
 
-    /** @var FeedbackService */
     private $feedbackService;
 
     public function __construct()
@@ -46,7 +45,6 @@ class FeedbackServiceTest extends TestCase {
 
     public function testProcessNewFeedback_happy_flow_first_click()
     {
-        /** @var FeedbackCode $feedbackCode */
         $feedbackCode = FeedbackCode::where("email_entry_id", 1)->where("feedback_type", FeedbackType::UNHAPPY)->first();
 
         // Check if the feedback is processed correctly when the customer clicks
@@ -58,7 +56,6 @@ class FeedbackServiceTest extends TestCase {
 
     public function testProcessNewFeedback_happy_flow_multiple_clicks()
     {
-        /** @var FeedbackCode $feedbackCode */
         $feedbackCode = FeedbackCode::where("email_entry_id", 1)->where("feedback_type", FeedbackType::UNHAPPY)->first();
         $feedback1 = $this->feedbackService->processFeedbackCode($feedbackCode->code);
 
@@ -72,7 +69,6 @@ class FeedbackServiceTest extends TestCase {
 
     public function testProcessNewFeedback_happy_flow_mail_not_sent()
     {
-        /** @var FeedbackCode $feedbackCode */
         $feedbackCode = FeedbackCode::where("email_entry_id", 1)->where("feedback_type", FeedbackType::UNHAPPY)->first();
 
         // Links should not be accepted if the email wasn't even sent
@@ -87,15 +83,15 @@ class FeedbackServiceTest extends TestCase {
 
     public function testProcessNewFeedback_happy_flow_cannot_use_different_feedback_mood_after_one_is_already_clicked()
     {
-        /** @var FeedbackCode $feedbackCodeUnhappy */
         $feedbackCodeUnhappy = FeedbackCode::where("email_entry_id", 1)->where("feedback_type", FeedbackType::UNHAPPY)->first();
-        /** @var FeedbackCode $feedbackCodeNeutral */
         $feedbackCodeNeutral = FeedbackCode::where("email_entry_id", 1)->where("feedback_type", FeedbackType::NEUTRAL)->first();
 
+        // test that unhappy feedback is processed properly
         $feedback1 = $this->feedbackService->processFeedbackCode($feedbackCodeUnhappy->code);
         $this->assertNotNull($feedback1);
         $this->assertEquals(EmailEntryStatus::CONFIRMED, $feedbackCodeUnhappy->emailEntry->status);
 
+        // test that neutral feedback is processed properly
         $feedback2 = $this->feedbackService->processFeedbackCode($feedbackCodeNeutral->code);
         $this->assertNull($feedback2);
         $this->assertEquals(EmailEntryStatus::CONFIRMED, $feedbackCodeNeutral->emailEntry->status);
@@ -106,9 +102,9 @@ class FeedbackServiceTest extends TestCase {
         $this->createFeedback(1, 1, 1, 13);
 
         $result = $this->feedbackService->update(1, ["content" => "valid feedback"]);
-        /** @var Feedback $feedback */
         $feedback = Feedback::whereId(1)->first();
 
+        // test that updating feedback content works properly
         $this->assertEquals($feedback->id, $result->id);
         $this->assertEquals("valid feedback", $result->content);
         $this->assertEquals("valid feedback", $feedback->content);
@@ -119,9 +115,9 @@ class FeedbackServiceTest extends TestCase {
         $this->createFeedback(1, 1, 1, 13);
 
         $result = $this->feedbackService->update(1, []);
-        /** @var Feedback $feedback */
         $feedback = Feedback::whereId(1)->first();
 
+        // test that clearing feedback content works properly (test 1/2)
         $this->assertNull($result);
         $this->assertEquals(null, $feedback->content);
     }
@@ -131,9 +127,9 @@ class FeedbackServiceTest extends TestCase {
         $this->createFeedback(1, 1, 1, 13);
 
         $result = $this->feedbackService->update(1, null);
-        /** @var Feedback $feedback */
         $feedback = Feedback::whereId(1)->first();
 
+        // test that clearing feedback content works properly (test 2/2)
         $this->assertNull($result);
         $this->assertEquals(null, $feedback->content);
     }
@@ -143,9 +139,9 @@ class FeedbackServiceTest extends TestCase {
         $this->createFeedback(1, 1, 1, 13);
 
         $result = $this->feedbackService->update(42, ["content" => "valid feedback"]);
-        /** @var Feedback $feedback */
         $feedback = Feedback::whereId(1)->first();
 
+        // test updating an invalid feedback item
         $this->assertNull($result);
         $this->assertEquals(null, $feedback->content);
     }

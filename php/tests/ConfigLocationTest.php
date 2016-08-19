@@ -15,7 +15,6 @@ class ConfigLocationTest extends \PHPUnit_Framework_TestCase
 
     public function tearDown() {
         $this->configLocation = null;
-        //\TestFiles::tearDownDotConfig();
     }
 
     public function testInitialization() {
@@ -44,8 +43,6 @@ class ConfigLocationTest extends \PHPUnit_Framework_TestCase
         \TestFiles::addLineDotConfig("test1: /tmp/test1/config.php");
         $this->configLocation = new ConfigLocation($file);
         $this->assertEquals(1,$this->configLocation->configLocationCount());
-
-
     }
 
     public function testConfigLocationExists() {
@@ -70,10 +67,12 @@ class ConfigLocationTest extends \PHPUnit_Framework_TestCase
         \TestFiles::addLineDotConfig("test2: /tmp/test2/config.php");
         $this->configLocation = new ConfigLocation($file);
 
+        // check that we can retrieve the location of a configuration file
         $this->assertEquals("/tmp/test1/config.php",$this->configLocation->getConfigLocation("test1"));
         $this->assertEquals("/tmp/test2/config.php",$this->configLocation->getConfigLocation("test2"));
+        
+        // check for appropriate responses when an invalid value is passed
         $this->assertEquals(null,$this->configLocation->getConfigLocation("notexist"));
-
     }
 
     public function testConfigLocationRetrievalFirst() {
@@ -94,7 +93,6 @@ class ConfigLocationTest extends \PHPUnit_Framework_TestCase
         $file = \TestFiles::setUpDotConfig();
         $this->configLocation = new ConfigLocation($file);
         $this->assertEquals(null,$this->configLocation->getFirstConfigLocation());
-
     }
 
 }

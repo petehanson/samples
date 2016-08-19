@@ -3,9 +3,6 @@
 
 class MessageTest extends \Codeception\TestCase\Test
 {
-    /**
-     * @var \UnitTester
-     */
     protected $tester;
 
     protected $file1 = null;
@@ -38,6 +35,7 @@ class MessageTest extends \Codeception\TestCase\Test
     }
 
     public function testConditional() {
+        // test loading a message configuration and processing a condition body within the template
         $message = new \UAR\Emailer\Message(\UAR\Emailer\MessageConfig::load($this->conditional));
         $this->assertEquals("Conditional subject line",$message->getSubject());
         $message->replace("hasAddress",true);
@@ -53,6 +51,7 @@ class MessageTest extends \Codeception\TestCase\Test
     }
 
     public function testMultiBody() {
+        // text loading a multi-part message configuration with html and plain text bodies
         $message = new \UAR\Emailer\Message(\UAR\Emailer\MessageConfig::load($this->multibody));
 
         $this->assertEquals("this is the html text version",$message->getBody());
@@ -64,6 +63,7 @@ class MessageTest extends \Codeception\TestCase\Test
     }
 
     public function testEmail1() {
+        // test loading addresses from a message configuration
         $message = new \UAR\Emailer\Message(\UAR\Emailer\MessageConfig::load($this->file1));
 
         $this->assertEquals("This is test email 1 subject line",$message->getSubject());
@@ -90,6 +90,7 @@ class MessageTest extends \Codeception\TestCase\Test
 
 
     public function testEmail2() {
+        // test replacements within a message configuration
         $message = new \UAR\Emailer\Message(\UAR\Emailer\MessageConfig::load($this->file2));
         $message->replace("replace1","test1");
         $message->replace("replace2","test2");
@@ -120,6 +121,7 @@ class MessageTest extends \Codeception\TestCase\Test
     }
 
     public function testSimpleEmail() {
+        // test loading a message from a file-type configuration
         $message = new \UAR\Emailer\Message(\UAR\Emailer\MessageConfig::load($this->simpleFile));
 
         $this->assertEquals("This is simple email subject line",$message->getSubject());
@@ -140,6 +142,7 @@ class MessageTest extends \Codeception\TestCase\Test
     }
 
     public function testFromObject() {
+        // test loading a message configuration from an object-type configuration
         $message = new \UAR\Emailer\Message(\UAR\Emailer\MessageConfig::load($this->fromObject));
 
         $from = $message->getFrom();
@@ -160,7 +163,7 @@ class MessageTest extends \Codeception\TestCase\Test
     }
 
     public function testCcBcc() {
-
+        // test loading and handling of cc and bcc addresses
         $originalJson = \UAR\Emailer\MessageConfig::load($this->ccbcc);
 
         $message = new \UAR\Emailer\Message($originalJson);
