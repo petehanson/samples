@@ -1,6 +1,6 @@
 # Laravel Samples
 
-Some introduction text for this section
+Below are details around the Laravel examples provided.
 
 ## CloudFlareAPI.php
 This is a model that I set up to make curl calls against the Cloudflare API to handle cache expires.  Part of the
