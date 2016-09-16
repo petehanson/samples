@@ -31,3 +31,13 @@ service that 911 was called and then notices are sent out to predefined phones, 
 indicate that someone called 911. It's a way to alert admin personal in case of an emergency, without having to send 
 someone to the office.
 
+## openpgp.poc.js
+
+This file was a quick proof of concept I assembled to test out the openpgp library. I wanted to verify that I could
+take public/private messages I generated with the library and then work with them, via it's API to encrypt and then
+decrypt a secret. I found the documentation a bit lacking with usage samples, so worked this up to test the process
+that I would need to use.
+
+I'm using openpgp for a message exchange service I've been building in my free time. It will be a Javascript based
+application, that handles all encryption operations client side. The tool can generate keys, or a user could easily
+generate a key with GPG for example and leverage that as their credential set. The service handles message exchange.
