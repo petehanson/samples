@@ -1,0 +1,211 @@
+@media only screen and (min-width:0px) and (max-width: 1835px)  {
+.main-holder {
+  section.content {
+    .bandwith-graph {
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    }
+    .toolbox {
+      padding:10px 15px;
+      @include linearGradient($toolbox-top, $toolbox-bottom);
+      @include br(2px);
+      .toolbox-menu {
+        padding-right: 15px;
+        li {
+          margin-right: 10px;
+          a {
+            i {
+              font-size: 14px;
+              margin-right: 3px;
+            }
+          }
+        }
+      }
+      .select {
+        position:relative;
+        float: left;
+        &.right {
+          float:right;
+        }
+      }
+      //select end
+      .date-range {
+        .date-range__container {
+          margin-right: 5px;
+        }
+        .filter-date {
+          padding: 0 5px;
+          height:30px;
+        }
+      }
+      //date-range end
+    }
+    //toolbox end
+  }     
+}
+  .responsive-table, .activity-table-container {
+      width: 100%;
+      overflow-x: scroll;
+  }
+  .divided-table {
+    min-width:1100px;
+  }
+  .image-holder {
+    img {
+      max-width: 100%;
+    }
+  }
+}
+@media only screen and (min-width:0px) and (max-width: 1450px)  {
+  .main-holder {
+  section.content {
+    .bandwith-graph {
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    }
+    .toolbox {
+      padding:10px 15px;
+      @include linearGradient($toolbox-top, $toolbox-bottom);
+      @include br(2px);
+      height:48px;
+      overflow: hidden;
+      -moz-transition: height 1s ease;
+      -webkit-transition: height 1s ease;
+      -o-transition: height 1s ease;
+      transition: height 1s ease;
+      .toolbox-button {
+          float: left;
+          margin-right: 20px;
+          display: inherit;
+          @include Font($open-sans, 12px, bold, normal, $black, none, 27px, left, none);
+          @include TextShadow(1px, 1px, 1px, $white);
+          i {
+            color: $toolbox-menu;
+            font-size: 14px;
+            margin-right: 9px;
+          }
+        }
+      &.toolbox-active {
+        height:88px;
+        -moz-transition: height 1s ease;
+        -webkit-transition: height 1s ease;
+        -o-transition: height 1s ease;
+        transition: height 1s ease;
+        overflow: visible;
+        .toolbox-menu {
+        visibility: visible;
+        opacity: 1;
+        transition: visibility, opacity linear;
+        transition-property:all; 
+        transition-duration:2.5s;
+        bottom: 10px;
+       }
+     }
+      .toolbox-menu {
+        padding-right: 15px;
+        position: absolute;
+        bottom: 10px;
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0.2s, opacity 0.2s linear;
+        li {
+          margin-right: 10px;
+          a {
+            i {
+              font-size: 14px;
+              margin-right: 3px;
+            }
+          }
+        }
+      }
+      //toolbox-menu end
+      //search end
+      .select {
+        position:relative;
+        float: left;
+        &.right {
+          float:right;
+        }
+      }
+      //select end
+      .date-range {
+        .date-range__container {
+          margin-right: 5px;
+        }
+        .filter-date {
+          padding: 0 5px;
+          height:30px;
+        }
+      }
+      //date-range end
+    }
+    //toolbox end
+  }     
+}
+}
+@media only screen and (min-width:1325px) and (max-width: 1560px)  {
+.main-holder section.content .tabs-content .ui-tabs .ui-tabs-nav .ui-tabs-anchor,
+  .main-holder section.content .tabs-content .ui-tabs .ui-state-active a.ui-tabs-anchor {
+      padding: 15px 13px 14px;
+      margin:0;
+      font-size: 12px;
+      border-right:1px solid $white;
+      &:before,&:after {
+        display: none;
+      }
+  }
+  .main-holder section.content .tabs-content .ui-tabs .ui-tabs-nav li {
+    border-right:1px solid $white;
+  }
+ 
+  .main-holder section.content .tabs-content .ui-tabs .ui-tabs-nav li:last-child .ui-tabs-anchor {
+    border-right:1px solid $marine-text;
+  }
+  .main-holder section.content .tabs-content .ui-tabs .ui-tabs-nav li:first-child .ui-tabs-anchor {
+   border-left:1px solid $marine-text;
+  }
+  }
+
+@media only screen and (min-width:0px) and (max-width: 1325px)  {
+  .main-holder section.top-bar nav .top-bar__nav li a {
+      padding: 0px 4px;
+  }
+  .main-holder section.content .tabs-content .ui-tabs .ui-tabs-nav .ui-tabs-anchor,
+  .main-holder section.content .tabs-content .ui-tabs .ui-state-active a.ui-tabs-anchor {
+      padding: 15px 3px 14px;
+      margin:0;
+      font-size: 10px;
+      border-right:1px solid $white;
+      &:before,&:after {
+        display: none;
+      }
+  }
+  .main-holder section.content .tabs-content .ui-tabs .ui-tabs-nav li:last-child .ui-tabs-anchor {
+    border-right:1px solid $marine-text;
+  }
+  .main-holder section.content .tabs-content .ui-tabs .ui-tabs-nav li:first-child .ui-tabs-anchor {
+   border-left:1px solid $marine-text;
+  }
+
+}
+@media only screen and (min-width:1200px) and (max-width: 1325px)  {
+  .main-holder section.content .tabs-content .ui-tabs .ui-tabs-nav .ui-tabs-anchor,
+  .main-holder section.content .tabs-content .ui-tabs .ui-state-active a.ui-tabs-anchor {
+      padding: 15px 13px 14px;
+  }
+}
+@media only screen and (min-width:0px) and (max-width: 1610px)  {
+  .activity-log-clear {
+  display:block;
+  }
+}
+@media only screen and (min-width:0px) and (max-width: 1023px)  {
+  body {
+    width:1024px;
+    overflow: scroll;
+  }
+}
